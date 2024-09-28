@@ -1,0 +1,8 @@
+<resources>
+    <string name="app_name">WellnessWay</string>
+    <string name="txt_home">Home</string>
+    <string name="txt_heart_rate">Measure</string>
+    <string name="txt_step_count">Step</string>
+    <string name="txt_location">Location</string>
+    <string name="txt_Sleep">Sleep</string>
+</resources>
