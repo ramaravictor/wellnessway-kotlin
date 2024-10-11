@@ -2,52 +2,49 @@ package com.example.wellnessway.component
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
-import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.material3.*
 import androidx.compose.runtime.Composable
-import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
-import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.navigation.NavController
 import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
-import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.*
 import androidx.compose.runtime.getValue
+import androidx.compose.ui.graphics.painter.Painter
+import androidx.compose.ui.res.painterResource
 import androidx.navigation.NavGraph.Companion.findStartDestination
+import com.example.wellnessway.R
+import com.example.wellnessway.presentation.heart_rate.HeartRateRoute
+import com.example.wellnessway.presentation.HomeRoute
+import com.example.wellnessway.presentation.location.LocationRoute
+import com.example.wellnessway.presentation.step_count.StepCountRoute
 
-data class BottomBarItem(val title: String, val icon: ImageVector, val route: String)
+data class BottomBarItem(val title: String, val icon: Painter, val route: Any)
 
 @Composable
 fun BottomBar(navController: NavController, modifier: Modifier = Modifier) {
     val bottomNavigationItems = listOf(
         BottomBarItem(
+            title = "Home",
+            icon = painterResource(id = R.drawable.ic_fas_home),
+            route = HomeRoute
+        ),
+        BottomBarItem(
             title = "Heart Rate",
-            icon = Icons.Default.Favorite,
-            route = "heart_rate"
+            icon = painterResource(id = R.drawable.ic_fas_heartbeat),
+            route = HeartRateRoute
         ),
         BottomBarItem(
             title = "Step Count",
-            icon = Icons.Default.Person,
-            route = "step_count"
-        ),
-        BottomBarItem(
-            title = "Home",
-            icon = Icons.Default.Home,
-            route = "home"
-        ),
-        BottomBarItem(
-            title = "Sleep",
-            icon = Icons.Default.Notifications,
-            route = "sleep_monitoring"
+            icon = painterResource(id = R.drawable.baseline_map_24),
+            route = StepCountRoute
         ),
         BottomBarItem(
             title = "Location",
-            icon = Icons.Default.LocationOn,
-            route = "location"
+            icon = painterResource(id = R.drawable.baseline_map_24),
+            route = LocationRoute
         )
     )
 
@@ -76,31 +73,27 @@ fun BottomBar(navController: NavController, modifier: Modifier = Modifier) {
                     }
                 },
                 icon = {
-                    if (isSelected) {
-
-                            Icon(
-                                imageVector = item.icon,
-                                contentDescription = item.title,
-                                tint = Color.Red, // Ikon berwarna putih
-                                modifier = Modifier.size(50.dp)
-                            )
-
-                    } else {
-                        // Ikon yang tidak terpilih lebih kecil dan lebih lembut warnanya
-                        Icon(
-                            imageVector = item.icon,
-                            contentDescription = item.title,
-                            tint = Color(0xFFFFAFAF), // Warna lembut untuk ikon tidak dipilih
-                            modifier = Modifier.size(30.dp)
-                        )
-                    }
+                    Icon(
+                        painter = item.icon as Painter,
+                        contentDescription = item.title,
+                        modifier = Modifier.size(if (isSelected) 30.dp else 24.dp),
+                        tint = if (isSelected) Color.Red else Color.Red
+                    )
                 },
-                label = null, // Tidak menampilkan label
-                alwaysShowLabel = false
+                label = {
+                    Text(
+                        text = item.title,
+                        color = if (isSelected) Color.Red else Color.Red
+                    )
+                },
+                alwaysShowLabel = true
             )
         }
     }
 }
+
+
+
 
 @Preview(showBackground = true)
 @Composable

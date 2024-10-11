@@ -1,6 +1,9 @@
 plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.jetbrains.kotlin.android)
+    alias(libs.plugins.kotlin.serialization)
+    id("kotlin-kapt")
+    id("com.google.dagger.hilt.android")
 }
 
 android {
@@ -59,8 +62,7 @@ dependencies {
     implementation(libs.androidx.ui.graphics)
     implementation(libs.androidx.ui.tooling.preview)
     implementation(libs.androidx.material3)
-    implementation(libs.androidx.navigation.runtime.ktx)
-    implementation(libs.androidx.navigation.compose)
+    implementation(libs.support.annotations)
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
@@ -68,4 +70,31 @@ dependencies {
     androidTestImplementation(libs.androidx.ui.test.junit4)
     debugImplementation(libs.androidx.ui.tooling)
     debugImplementation(libs.androidx.ui.test.manifest)
+
+
+    implementation(libs.navigation.compose)
+    implementation(libs.kotlinx.serialization.json)
+
+// Coroutines
+// Coroutine Lifecycle Scopes
+    implementation(libs.androidx.lifecycle.viewmodel.ktx)
+
+    //Dagger - Hilt
+    implementation(libs.hilt.android.v2511)
+    kapt(libs.hilt.android.compiler.v2511)
+
+    implementation(libs.androidx.hilt.navigation.compose)
+
+    // Retrofit
+    implementation(libs.retrofit)
+    implementation(libs.converter.gson)
+    implementation(libs.okhttp)
+    implementation(libs.logging.interceptor)
+    implementation(libs.androidx.datastore.preferences)
+    implementation(libs.coil.compose)
+    implementation(libs.composeIcons.fontAwesome)
+    implementation(libs.androidx.core.splashscreen)
+    implementation(libs.androidx.biometric)
+    implementation(libs.androidx.appcompat)
+    implementation(libs.play.services.location)
 }

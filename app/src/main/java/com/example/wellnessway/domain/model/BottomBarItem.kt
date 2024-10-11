@@ -1,4 +1,4 @@
-package com.example.wellnessway.model
+package com.example.wellnessway.domain.model
 
 import androidx.compose.ui.graphics.vector.ImageVector
 

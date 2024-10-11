@@ -1,4 +1,4 @@
-package com.example.wellnessway.feature
+package com.example.wellnessway.presentation.heart_rate
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
@@ -13,13 +13,19 @@ import androidx.compose.ui.graphics.graphicsLayer
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import androidx.compose.ui.tooling.preview.Preview
+import androidx.navigation.NavHostController
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
+import kotlinx.serialization.Serializable
+
+
+@Serializable
+object HeartRateRoute
 
 @Composable
-fun HeartRateScreen() {
+fun HeartRateScreen(navController: NavHostController) {
+
     // State untuk loading status dan progress
     var isLoading by remember { mutableStateOf(false) }
     var progress by remember { mutableStateOf(0f) }
@@ -170,9 +176,4 @@ fun HeartRateScreen() {
     }
 }
 
-@Preview(showBackground = true)
-@Composable
-fun HeartRateScreenPreview() {
-    HeartRateScreen()
-}
 

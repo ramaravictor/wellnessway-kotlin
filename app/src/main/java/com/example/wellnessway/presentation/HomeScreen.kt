@@ -1,4 +1,4 @@
-package com.example.wellnessway.feature
+package com.example.wellnessway.presentation
 
 import android.icu.text.SimpleDateFormat
 import android.os.Build
@@ -20,9 +20,13 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.rememberNavController
+import com.example.wellnessway.presentation.location.LocationRoute
+import kotlinx.serialization.Serializable
 import java.util.*
 
-@RequiresApi(Build.VERSION_CODES.N)
+@Serializable
+object HomeRoute
+
 @Composable
 fun HomeScreen(navController: NavHostController) {
     // Background gradien merah
@@ -74,16 +78,6 @@ fun HomeScreen(navController: NavHostController) {
                             color = Color.White,
                             fontSize = 24.sp
                         )
-                    )
-                }
-
-                // Tombol pengaturan
-                IconButton(onClick = { /* Aksi untuk settings */ }) {
-                    Icon(
-                        imageVector = Icons.Filled.Settings,
-                        contentDescription = "Settings",
-                        tint = Color.White,
-                        modifier = Modifier.size(50.dp)
                     )
                 }
             }

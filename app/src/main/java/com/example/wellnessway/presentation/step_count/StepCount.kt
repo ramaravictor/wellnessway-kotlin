@@ -1,4 +1,4 @@
-package com.example.wellnessway.feature
+package com.example.wellnessway.presentation.step_count
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
@@ -6,7 +6,6 @@ import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.ArrowDropDown
-import androidx.compose.material.icons.filled.MoreVert
 import androidx.compose.material3.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
@@ -16,19 +15,24 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.graphicsLayer
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.text.input.TextFieldValue
-import androidx.compose.ui.text.input.VisualTransformation
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.navigation.NavHostController
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
+import kotlinx.serialization.Serializable
+
+
+@Serializable
+object StepCountRoute
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun StepCountScreen() {
+fun StepCountScreen(navController: NavHostController) {
     // State untuk input step goals (TextFieldValue untuk menjaga state kursor)
     var selectedGoal by remember { mutableStateOf(TextFieldValue("1000")) } // Default goal
 
@@ -255,10 +259,4 @@ fun StepCountScreen() {
 
         Spacer(modifier = Modifier.height(16.dp))
     }
-}
-
-@Preview(showBackground = true)
-@Composable
-fun StepCountScreenPreview() {
-    StepCountScreen()
 }

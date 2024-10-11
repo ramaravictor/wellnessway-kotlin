@@ -1,4 +1,4 @@
-package com.example.wellnessway.feature
+package com.example.wellnessway.presentation
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
@@ -16,7 +16,7 @@ import androidx.compose.ui.unit.sp
 import androidx.compose.ui.tooling.preview.Preview
 
 @Composable
-fun LocationScreen() {
+fun LocationScreenold() {
     // Background gradient
     val gradientBrush = Brush.verticalGradient(
         colors = listOf(
@@ -109,5 +109,5 @@ fun LocationItem(name: String, distance: String) {
 @Preview(showBackground = true)
 @Composable
 fun LocationScreenPreview() {
-    LocationScreen()
+    LocationScreenold()
 }
