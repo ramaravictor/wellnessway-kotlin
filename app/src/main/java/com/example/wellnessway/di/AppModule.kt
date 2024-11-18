@@ -2,15 +2,17 @@ package com.example.wellnessway.di
 
 
 
-import android.content.Context
 import com.example.wellnessway.common.Constants
+import com.example.wellnessway.data.local.StepsDao
 import com.example.wellnessway.data.remote.WellnessWayApi
+import com.example.wellnessway.data.repository.StepCountRepositoryImpl
 import com.example.wellnessway.data.repository.WellnessWayRepositoryImpl
+import com.example.wellnessway.domain.repository.StepCountRepository
 import com.example.wellnessway.domain.repository.WellnessWayRepository
+import com.example.wellnessway.domain.use_case.GetStepCountUseCase
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
-import dagger.hilt.android.qualifiers.ApplicationContext
 import dagger.hilt.components.SingletonComponent
 import okhttp3.OkHttpClient
 import retrofit2.Retrofit
@@ -47,5 +49,20 @@ object AppModule {
     @Singleton
     fun provideWellnessWayRepository(wellnessWayApi: WellnessWayApi): WellnessWayRepository {
         return WellnessWayRepositoryImpl(wellnessWayApi)
+    }
+
+
+    @Provides
+    fun provideStepCountRepository(
+        stepsDao: StepsDao
+    ): StepCountRepositoryImpl {
+        return StepCountRepositoryImpl(stepsDao)
+    }
+
+    @Provides
+    fun provideGetStepCountUseCase(
+        repository: StepCountRepository
+    ): GetStepCountUseCase {
+        return GetStepCountUseCase(repository)
     }
 }
