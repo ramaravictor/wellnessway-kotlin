@@ -1,4 +1,4 @@
-package com.example.wellnessway.presentation.permission
+package com.example.wellnessway.permission
 
 
 import androidx.compose.foundation.clickable

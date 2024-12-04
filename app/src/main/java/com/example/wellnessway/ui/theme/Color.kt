@@ -1,4 +1,4 @@
-package com.example.wellnessway.presentation.theme
+package com.example.wellnessway.ui.theme
 
 import androidx.compose.ui.graphics.Color
 

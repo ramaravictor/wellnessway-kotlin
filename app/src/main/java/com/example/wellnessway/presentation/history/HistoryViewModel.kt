@@ -1,9 +1,9 @@
-package com.example.sensorapp.presentation.history
+package com.example.wellnessway.presentation.history
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.sensorapp.SensorApp
-import com.example.sensorapp.data.local.schema.History
+import com.example.wellnessway.WellnessWayApplication
+import com.example.wellnessway.data.local.schema.History
 import io.realm.kotlin.ext.query
 import kotlinx.coroutines.flow.SharingStarted
 import kotlinx.coroutines.flow.map
@@ -14,7 +14,7 @@ class HistoryViewModel(
 
 ): ViewModel() {
 
-    private val realm = SensorApp.realm
+    private val realm = WellnessWayApplication.realm
     val histories = realm
         .query<History>()
         .asFlow()

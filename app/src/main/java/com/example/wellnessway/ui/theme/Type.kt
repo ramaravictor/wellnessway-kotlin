@@ -1,4 +1,4 @@
-package com.example.wellnessway.presentation.theme
+package com.example.wellnessway.ui.theme
 
 import androidx.compose.material3.Typography
 import androidx.compose.ui.text.TextStyle

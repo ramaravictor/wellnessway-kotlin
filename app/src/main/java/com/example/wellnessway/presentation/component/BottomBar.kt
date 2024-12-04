@@ -1,4 +1,4 @@
-package com.example.wellnessway.component
+package com.example.wellnessway.presentation.component
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
@@ -21,9 +21,9 @@ import androidx.compose.ui.graphics.painter.Painter
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.res.painterResource
 import androidx.navigation.NavGraph.Companion.findStartDestination
-import com.example.sensorapp.presentation.history.HistoryRoute
 import com.example.wellnessway.R
 import com.example.wellnessway.presentation.HomeRoute
+import com.example.wellnessway.presentation.history.HistoryRoute
 import com.example.wellnessway.presentation.location.LocationRoute
 import com.example.wellnessway.presentation.stepCount.StepCountRoute
 
@@ -82,13 +82,13 @@ fun BottomBar(navController: NavController, modifier: Modifier = Modifier) {
                         imageVector = item.icon,
                         contentDescription = item.title,
                         modifier = Modifier.size(if (isSelected) 30.dp else 24.dp),
-                        tint = if (isSelected) Color.Red else Color.Red
+                        tint = if (isSelected) Color(0xFFD32F2F) else Color(0xFFD32F2F)
                     )
                 },
                 label = {
                     Text(
                         text = item.title,
-                        color = if (isSelected) Color.Red else Color.Red
+                        color = if (isSelected) Color(0xFFD32F2F) else Color(0xFFD32F2F)
                     )
                 },
                 alwaysShowLabel = true

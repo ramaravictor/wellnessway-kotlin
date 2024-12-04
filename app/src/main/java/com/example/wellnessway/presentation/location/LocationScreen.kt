@@ -72,10 +72,10 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.sp
 import androidx.core.app.ActivityCompat
 import com.example.wellnessway.R
-import com.example.wellnessway.presentation.permission.LocationPermissionTextProvider
-import com.example.wellnessway.presentation.permission.PermissionDialog
-import com.example.wellnessway.presentation.permission.PermissionViewModel
-import com.example.wellnessway.presentation.permission.openAppSettings
+import com.example.wellnessway.permission.LocationPermissionTextProvider
+import com.example.wellnessway.permission.PermissionDialog
+import com.example.wellnessway.permission.PermissionViewModel
+import com.example.wellnessway.permission.openAppSettings
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 import java.util.Locale

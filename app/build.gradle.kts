@@ -3,7 +3,11 @@ plugins {
     alias(libs.plugins.jetbrains.kotlin.android)
     alias(libs.plugins.kotlin.serialization)
     id("kotlin-kapt")
+    id("io.realm.kotlin")
     id("com.google.dagger.hilt.android")
+    id ("com.google.android.libraries.mapsplatform.secrets-gradle-plugin")
+
+
 }
 
 android {
@@ -63,6 +67,14 @@ dependencies {
     implementation(libs.androidx.ui.tooling.preview)
     implementation(libs.androidx.material3)
     implementation(libs.support.annotations)
+    implementation(libs.androidx.room.common)
+    implementation(libs.androidx.room.ktx)
+    implementation(libs.androidx.room.runtime.android)
+    implementation ("androidx.room:room-runtime:2.5.0")
+    implementation(libs.androidx.runtime.livedata)
+    kapt ("androidx.room:room-compiler:2.5.0")
+    implementation ("androidx.room:room-ktx:2.5.0")
+    //implementation(libs.androidx.room.runtime.jvm)
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
@@ -97,4 +109,20 @@ dependencies {
     implementation(libs.androidx.biometric)
     implementation(libs.androidx.appcompat)
     implementation(libs.play.services.location)
+
+    implementation(platform("androidx.compose:compose-bom:2023.10.01"))
+    implementation("androidx.activity:activity-compose")
+    implementation("androidx.compose.foundation:foundation")
+    implementation("androidx.compose.material:material")
+
+    //    viewmodel
+    implementation(libs.androidx.lifecycle.viewmodel.ktx)
+    implementation("io.realm.kotlin:library-base:1.11.0")
+    implementation("com.google.accompanist:accompanist-permissions:0.30.1")
+    implementation("androidx.compose.material:material-icons-extended:1.7.5")
+
+    //animasi
+    implementation("io.coil-kt:coil-compose:2.2.2")
+    implementation("io.coil-kt:coil-gif:2.2.2")
+
 }

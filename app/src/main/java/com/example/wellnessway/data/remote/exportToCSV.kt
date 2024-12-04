@@ -1,4 +1,4 @@
-package com.example.sensorapp.data.remote
+package com.example.wellnessway.data.remote
 
 interface exportToCSV {
     fun getCsvBodyRow(): String

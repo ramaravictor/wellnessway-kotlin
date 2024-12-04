@@ -1,4 +1,4 @@
-package com.example.wellnessway.component
+package com.example.wellnessway.presentation.component
 
 import android.content.ActivityNotFoundException
 import android.content.Context
@@ -23,18 +23,19 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.core.content.FileProvider
 import com.example.wellnessway.data.local.schema.History
+import kotlinx.serialization.json.JsonNull.content
 import java.io.File
 import java.text.SimpleDateFormat
 import java.util.*
 
 @Composable
-fun HistoryCard(history: History, context: Context, onDeleteItemClicked: (History) -> Unit) {
+fun HistoryCard(history: History, context: Context, onDeleteItemClicked: (History) -> Unit, content: @Composable () -> Unit) {
     Card(
         modifier = Modifier
             .fillMaxWidth()
             .padding(vertical = 8.dp),
         shape = RoundedCornerShape(16.dp),
-        colors = CardDefaults.cardColors(containerColor = MaterialTheme.colorScheme.inverseOnSurface),
+        colors = CardDefaults.cardColors(containerColor = Color(0xFFFFCDD2)),
         elevation = CardDefaults.cardElevation(6.dp)
     ) {
         Column(
@@ -49,7 +50,7 @@ fun HistoryCard(history: History, context: Context, onDeleteItemClicked: (Histor
                 Column {
                     Text(
                         text = history.title,
-                        color = MaterialTheme.colorScheme.onSecondaryContainer,
+                        color = Color.Black,
                         fontWeight = FontWeight.Bold,
                         fontSize = 24.sp
                     )
@@ -59,27 +60,32 @@ fun HistoryCard(history: History, context: Context, onDeleteItemClicked: (Histor
                     Text(
                         text = "Date: $date",
                         style = MaterialTheme.typography.bodySmall,
-                        color = MaterialTheme.colorScheme.onSurfaceVariant
+                        color = Color.Black
                     )
                 }
                 IconButton(onClick = { onDeleteItemClicked(history) }) {
                     Icon(
                         imageVector = Icons.Default.Delete,
                         contentDescription = "Delete",
-                        tint = MaterialTheme.colorScheme.error
+                        tint = Color(0xFFD32F2F)
                     )
                 }
             }
+            Spacer(modifier = Modifier.height(18.dp))
+            Divider(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .padding(horizontal = 8.dp), // Menambahkan padding horizontal agar Divider tidak memenuhi layar penuh
+                color = Color.Black, // Warna Divider (opsional)
+                thickness = 1.dp // Ketebalan Divider (opsional)
+            )
+            // Konten fleksibel yang dapat diatur dari luar
 
-            Spacer(modifier = Modifier.height(12.dp))
-            Divider()
-            Spacer(modifier = Modifier.height(12.dp))
+            content()
 
             // Display Sensor File Items with Icons
-            SensorFileSection("Step Counter Data", history.stepCounterPath, context)
-            Spacer(modifier = Modifier.height(8.dp))
-            SensorFileSection("Accelerometer Data", history.accelerometerPath, context)
-        }
+            SensorFileSection("Steps Data", history.stepCounterPath, context)
+            }
     }
 }
 
@@ -98,7 +104,7 @@ fun SensorFileSection(label: String, filePath: String, context: Context) {
             Box(
                 modifier = Modifier
                     .size(32.dp)
-                    .background(MaterialTheme.colorScheme.primary, CircleShape),
+                    .background(Color(0xFFD32F2F), CircleShape),
                 contentAlignment = Alignment.Center
             ) {
                 Icon(
@@ -129,7 +135,7 @@ fun openFile(context: Context, filePath: String) {
 
     val uri: Uri = FileProvider.getUriForFile(
         context,
-        "com.example.sensorapp.provider",
+        "com.example.wellnessway.provider",
         file
     )
 

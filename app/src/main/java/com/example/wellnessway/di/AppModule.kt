@@ -1,18 +1,17 @@
+// In AppModule.kt
 package com.example.wellnessway.di
 
-
-
+import android.content.Context
+import androidx.room.Room
 import com.example.wellnessway.common.Constants
-import com.example.wellnessway.data.local.StepsDao
 import com.example.wellnessway.data.remote.WellnessWayApi
-import com.example.wellnessway.data.repository.StepCountRepositoryImpl
 import com.example.wellnessway.data.repository.WellnessWayRepositoryImpl
-import com.example.wellnessway.domain.repository.StepCountRepository
 import com.example.wellnessway.domain.repository.WellnessWayRepository
-import com.example.wellnessway.domain.use_case.GetStepCountUseCase
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
+import dagger.hilt.android.qualifiers.ApplicationContext
+import dagger.hilt.android.scopes.ViewModelScoped
 import dagger.hilt.components.SingletonComponent
 import okhttp3.OkHttpClient
 import retrofit2.Retrofit
@@ -23,8 +22,7 @@ import javax.inject.Singleton
 @InstallIn(SingletonComponent::class)
 object AppModule {
 
-
-
+    // Location
     @Provides
     @Singleton
     fun provideOkHttpClient(): OkHttpClient {
@@ -32,10 +30,9 @@ object AppModule {
             .build()
     }
 
-
     @Provides
     @Singleton
-    fun provideSoulSpaceApi(okHttpClient: OkHttpClient): WellnessWayApi {
+    fun provideWellnessWayApi(okHttpClient: OkHttpClient): WellnessWayApi {
         return Retrofit.Builder()
             .baseUrl(Constants.BASE_URL)
             .client(okHttpClient)
@@ -44,25 +41,9 @@ object AppModule {
             .create(WellnessWayApi::class.java)
     }
 
-
     @Provides
     @Singleton
     fun provideWellnessWayRepository(wellnessWayApi: WellnessWayApi): WellnessWayRepository {
         return WellnessWayRepositoryImpl(wellnessWayApi)
-    }
-
-
-    @Provides
-    fun provideStepCountRepository(
-        stepsDao: StepsDao
-    ): StepCountRepositoryImpl {
-        return StepCountRepositoryImpl(stepsDao)
-    }
-
-    @Provides
-    fun provideGetStepCountUseCase(
-        repository: StepCountRepository
-    ): GetStepCountUseCase {
-        return GetStepCountUseCase(repository)
     }
 }

@@ -1,4 +1,4 @@
-package com.example.wellnessway.presentation.theme
+package com.example.wellnessway.ui.theme
 
 import android.app.Activity
 import android.os.Build

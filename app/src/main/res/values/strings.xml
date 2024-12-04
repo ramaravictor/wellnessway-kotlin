@@ -5,4 +5,11 @@
     <string name="txt_step_count">Step</string>
     <string name="txt_location">Location</string>
     <string name="txt_Sleep">Sleep</string>
+
+
+    <!-- OTHER -->
+    <string name="indeterminate_mode">Indeterminate mode</string>
+    <string name="round_border">Round border</string>
+    <string name="left">Left</string>
+    <string name="right">Right</string>
 </resources>

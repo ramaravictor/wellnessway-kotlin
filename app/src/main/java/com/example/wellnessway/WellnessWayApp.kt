@@ -9,33 +9,48 @@ import androidx.compose.ui.tooling.preview.Devices
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
-import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
-import com.example.wellnessway.component.BottomBar
-import com.example.wellnessway.presentation.heart_rate.HeartRateRoute
-import com.example.wellnessway.presentation.heart_rate.HeartRateScreen
+import com.example.wellnessway.presentation.component.BottomBar
+import com.example.wellnessway.data.local.schema.History
 import com.example.wellnessway.presentation.HomeRoute
 import com.example.wellnessway.presentation.HomeScreen
+import com.example.wellnessway.presentation.history.HistoryRoute
+import com.example.wellnessway.presentation.history.HistoryScreen
 import com.example.wellnessway.presentation.location.LocationRoute
 import com.example.wellnessway.presentation.location.LocationScreen
-import com.example.wellnessway.presentation.step_count.StepCountRoute
-import com.example.wellnessway.presentation.step_count.StepCountScreen
+import com.example.wellnessway.presentation.stepCount.StepCountRoute
+import com.example.wellnessway.presentation.stepCount.StepCountScreen
 import dagger.hilt.android.HiltAndroidApp
+import io.realm.kotlin.Realm
+import io.realm.kotlin.RealmConfiguration
 
 
 @HiltAndroidApp
-class WellnessWayApplication : Application()
+class WellnessWayApplication : Application(){
+    companion object {
+        lateinit var realm: Realm
+    }
+    override fun onCreate() {
+        super.onCreate()
+
+        realm = Realm.open(
+            configuration = RealmConfiguration.create(
+                schema = setOf(History::class)
+            )
+        )
+    }
+}
 
 @Composable
 fun WellnessWayApp() {
     val navController = rememberNavController()
-    val navBackStackEntry = navController.currentBackStackEntryAsState()
+//    val navBackStackEntry = navController.currentBackStackEntryAsState()
 
     Scaffold(
         bottomBar = {
             // Tampilkan BottomBar kecuali pada halaman "sleep_start"
 
-                BottomBar(navController = navController)
+            BottomBar(navController = navController)
 
         }
     ) { paddingValues ->
@@ -50,8 +65,14 @@ fun WellnessWayApp() {
                 )
             }
 
-            composable<HeartRateRoute> {
-                HeartRateScreen(
+//            composable<HeartRateRoute> {
+//                HeartRateScreen(
+//                    navController = navController
+//                )
+//            }
+
+            composable<LocationRoute> {
+                LocationScreen(
                     navController = navController
                 )
             }
@@ -62,12 +83,14 @@ fun WellnessWayApp() {
                 )
             }
 
-//            composable("step_count") { StepCountScreen() }
-            composable<LocationRoute> {
-                LocationScreen(
+            composable<HistoryRoute> {
+                HistoryScreen(
                     navController = navController
                 )
             }
+
+//            composable("step_count") { StepCountScreen() }
+
         }
     }
 }

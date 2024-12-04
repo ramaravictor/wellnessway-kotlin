@@ -1,14 +1,13 @@
-package com.example.wellnessway.presentation.step_count
+package com.example.wellnessway.presentation.stepCount
 
 data class StepCountState(
+    val currentStep: Float = 0f,
+    val totalSteps: Float = 0f,
+    val distanceInMeters: Double = 0.0,
+    val caloriesBurned: Double = 0.0,
+    val elapsedTime: Long = 0L,
+    val formattedElapsedTime: String = "00:00:00",
     val isDebugging: Boolean = false,
     val isDebuggingAttempted: Boolean = false,
-    val totalSteps: Float = 0f,
-    val currentStep: Float = 0f,
-    val accelerometerX: Float = 0f,
-    val accelerometerY: Float = 0f,
-    val accelerometerZ: Float = 0f,
-    val title: String = "",
-    val elapsedTime: Long = 0L,
-    val formattedElapsedTime: String = "00:00:00"
+    val title: String = ""
 )

@@ -1,4 +1,4 @@
-package com.example.wellnessway.component
+package com.example.wellnessway.presentation.component
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
@@ -23,16 +23,16 @@ import androidx.compose.ui.unit.sp
 @Composable
 fun SensorCard(
     icon: ImageVector,
-    content: String,
     title: String,
+    content: @Composable () -> Unit, // Menggunakan @Composable untuk konten fleksibel
     backgroundColor: Color
 ) {
     Card(
         modifier = Modifier
             .fillMaxWidth()
             .padding(vertical = 12.dp)
-            .height(150.dp),
-        colors = CardDefaults.cardColors(containerColor = backgroundColor),
+            .height(220.dp),
+        colors = CardDefaults.cardColors(containerColor = Color.White),
         shape = RoundedCornerShape(16.dp),
         elevation = CardDefaults.cardElevation(4.dp)
     ) {
@@ -54,8 +54,8 @@ fun SensorCard(
                         .background(
                             brush = Brush.linearGradient(
                                 colors = listOf(
-                                    MaterialTheme.colorScheme.primary,
-                                    MaterialTheme.colorScheme.primaryContainer
+                                    Color(0xFFD32F2F),
+                                    Color(0xFFEF5350)
                                 )
                             )
                         ),
@@ -77,23 +77,21 @@ fun SensorCard(
                         fontWeight = FontWeight.SemiBold,
                         fontSize = 18.sp
                     ),
-                    color = MaterialTheme.colorScheme.onSurface
+                    color = Color.Black
                 )
             }
 
             Spacer(modifier = Modifier.height(8.dp))
 
-            Text(
-                text = content,
-                style = MaterialTheme.typography.bodyMedium.copy(
-                    lineHeight = 22.sp,
-                    fontSize = 16.sp
-                ),
-                color = MaterialTheme.colorScheme.onSurfaceVariant,
+            // Konten fleksibel yang dapat diatur dari luar
+            Box(
                 modifier = Modifier
                     .fillMaxWidth()
                     .padding(start = 8.dp)
-            )
+            ) {
+                content()
+            }
         }
     }
 }
+

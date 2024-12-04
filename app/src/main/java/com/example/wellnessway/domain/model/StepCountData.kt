@@ -1,12 +1,15 @@
-package com.example.sensorapp.data.model
+package com.example.wellnessway.domain.model
 
-import com.example.sensorapp.data.remote.exportToCSV
+
+import com.example.wellnessway.data.remote.exportToCSV
 import java.text.SimpleDateFormat
 import java.util.Date
 import java.util.Locale
 
 data class StepCountData(
     val steps: Float = 0f,
+    val distanceInMeters: Double = 0.0, // Ubah ke Double
+    val caloriesBurned: Double = 0.0,
     val timestamp: Long? = 0
 ) : exportToCSV {
 
@@ -14,10 +17,10 @@ data class StepCountData(
 
     override fun getCsvBodyRow(): String {
         val formattedTimestamp = timestamp?.let { dateFormat.format(Date(it)) } ?: ""
-        return "$steps,$formattedTimestamp"
+        return "$steps,$caloriesBurned,$distanceInMeters,$formattedTimestamp"
     }
 
     override fun getCsvHeaderRow(): String {
-        return "steps,timestamp"
+        return "steps,caloriesBurned,distanceInMeters,timestamp"
     }
 }
